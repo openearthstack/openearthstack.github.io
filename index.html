@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OpenEarthStack | Open Geospatial AI Infrastructure</title>
+<meta name="description" content="OpenEarthStack builds the full stack for operational SAR intelligence: analysis-ready data, foundation models, edge inference, and open tooling." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="#top" class="brand" aria-label="OpenEarthStack home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#build">What We Build</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn--ghost nav__cta">Get in touch</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__backdrop" aria-hidden="true">
+    <svg class="hero__art" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <radialGradient id="atmos" cx="50%" cy="108%" r="72%">
+          <stop offset="0%"  stop-color="#5db8e6" stop-opacity="0.42"/>
+          <stop offset="22%" stop-color="#5db8e6" stop-opacity="0.18"/>
+          <stop offset="55%" stop-color="#5db8e6" stop-opacity="0.04"/>
+          <stop offset="100%" stop-color="#5db8e6" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="planet" cx="50%" cy="112%" r="58%">
+          <stop offset="0%"  stop-color="#0d1524"/>
+          <stop offset="70%" stop-color="#07090d"/>
+          <stop offset="100%" stop-color="#07090d" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="limb" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#8fd6ff" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#8fd6ff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- atmospheric wash -->
+      <rect width="100%" height="100%" fill="url(#atmos)"/>
+
+      <!-- planet body -->
+      <circle cx="800" cy="1620" r="960" fill="url(#planet)"/>
+      <!-- limb highlight -->
+      <circle cx="800" cy="1620" r="960" fill="none" stroke="url(#limb)" stroke-width="2"/>
+
+      <!-- orbital arc -->
+      <path d="M -120 360 Q 800 -180 1720 360"
+            stroke="#5db8e6" stroke-opacity="0.28" stroke-width="1"
+            fill="none" stroke-dasharray="2 8"/>
+      <!-- second arc, further out -->
+      <path d="M -160 480 Q 800 -80 1760 480"
+            stroke="#5db8e6" stroke-opacity="0.12" stroke-width="1"
+            fill="none" stroke-dasharray="1 10"/>
+
+      <!-- satellite -->
+      <g transform="translate(1060 180)">
+        <circle r="14" fill="#5db8e6" fill-opacity="0.18"/>
+        <circle r="6"  fill="#5db8e6" fill-opacity="0.35"/>
+        <circle r="2.5" fill="#8fd6ff"/>
+      </g>
+
+      <!-- scattered stars -->
+      <g fill="#8fd6ff" fill-opacity="0.55">
+        <circle cx="180" cy="120" r="1"/>
+        <circle cx="340" cy="60"  r="0.8"/>
+        <circle cx="520" cy="200" r="1.2"/>
+        <circle cx="1260" cy="80" r="0.9"/>
+        <circle cx="1460" cy="240" r="1"/>
+        <circle cx="1380" cy="420" r="0.7"/>
+        <circle cx="220" cy="340" r="0.8"/>
+        <circle cx="60"  cy="520" r="1"/>
+      </g>
+    </svg>
+    <div class="hero__grid"></div>
+    <div class="hero__scan"></div>
+    <div class="hero__vignette"></div>
+  </div>
+
+  <div class="wrap hero__inner">
+    <h1 class="hero__title">
+      Making the Earth <em>observable</em><br />for everyone.
+    </h1>
+
+    <p class="hero__sub">
+      SAR satellites image the entire planet, through cloud, at night, in any
+      conditions. The AI infrastructure to make that data usable has been
+      missing. We are building it.
+    </p>
+
+    <div class="hero__ctas">
+      <a href="#contact" class="btn btn--solid">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- BUILT BY -->
+<section class="teamfrom" aria-label="Team backgrounds">
+  <div class="wrap">
+    <p class="teamfrom__label">Built by a team from</p>
+  </div>
+  <div class="teamfrom__rail">
+    <div class="teamfrom__track">
+      <div class="teamfrom__group">
+        <span>HOTOSM</span>
+        <span>London School of Economics</span>
+        <span>Imperial College London</span>
+        <span>United Nations</span>
+        <span>Erasmus+</span>
+        <span>CDE Masters</span>
+        <span>Flutterwave</span>
+        <span>Universität Salzburg</span>
+      </div>
+      <div class="teamfrom__group" aria-hidden="true">
+        <span>HOTOSM</span>
+        <span>London School of Economics</span>
+        <span>Imperial College London</span>
+        <span>United Nations</span>
+        <span>Erasmus+</span>
+        <span>CDE Masters</span>
+        <span>Flutterwave</span>
+        <span>Universität Salzburg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE BUILD -->
+<section class="section" id="build">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">What We Build</p>
+      <h2 class="section__title">The full stack of AI infrastructure for operational SAR.</h2>
+    </div>
+
+    <div class="stack">
+      <article class="stack__card">
+        <div class="stack__num">01</div>
+        <h3>Analysis-Ready Data</h3>
+        <p>
+          Preprocessed, labelled SAR datasets for the geographies and contexts
+          where labelled data is thinnest. STAC-catalogued. Optimised for low
+          bandwidth.
+        </p>
+      </article>
+
+      <article class="stack__card">
+        <div class="stack__num">02</div>
+        <h3>Foundation Models</h3>
+        <p>
+          Fine-tuned on underrepresented geographies. Published with
+          per-context benchmarks. Teams know how a model performs in their
+          deployment context before they ship.
+        </p>
+      </article>
+
+      <article class="stack__card">
+        <div class="stack__num">03</div>
+        <h3>Edge Inference</h3>
+        <p>
+          Full pipelines running on 8 GB RAM in under 20 seconds. Offline.
+          Field-deployable. The same capability as a data centre, on a laptop.
+        </p>
+      </article>
+
+      <article class="stack__card">
+        <div class="stack__num">04</div>
+        <h3>Open Tooling</h3>
+        <p>
+          End-to-end workflows from raw Sentinel-1 to analysis-ready output.
+          Documented. Modular. Every improvement compounds.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="section section--alt" id="results">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Results</p>
+      <h2 class="section__title">What we have achieved so far.</h2>
+    </div>
+
+    <div class="results">
+      <div class="result">
+        <div class="result__stat">12M km²</div>
+        <p>Processed.</p>
+      </div>
+      <div class="result">
+        <div class="result__stat">2,200+</div>
+        <p>Scenes across 18 countries and 3 continents.</p>
+      </div>
+      <div class="result">
+        <div class="result__stat">4 / 3</div>
+        <p>Datasets and benchmarks. Documented, reproducible, published.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section class="problem">
+  <div class="problem__scan" aria-hidden="true"></div>
+  <div class="wrap problem__inner">
+    <p class="section__label">The Problem</p>
+    <p class="problem__text">
+      The satellites see the whole planet. The tools to use them serve a
+      fraction of it. <em>We are closing that gap.</em>
+    </p>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="section usecases-section">
+  <div class="wrap">
+    <p class="section__label">Use Cases</p>
+    <ul class="usecases" aria-label="Use cases">
+      <li>Oil spill detection</li>
+      <li>Mining site monitoring</li>
+      <li>Crop insurance</li>
+      <li>Urban change mapping</li>
+      <li>Structural deformation</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="faq__head">
+      <div>
+        <p class="section__label">FAQ</p>
+        <h2 class="section__title">Frequently asked.</h2>
+      </div>
+      <a href="#contact" class="btn btn--ghost faq__cta">Book a demo</a>
+    </div>
+
+    <div class="faq__list">
+      <details class="faq__item">
+        <summary>How is OpenEarthStack different from other SAR analytics providers?</summary>
+        <div class="faq__answer">
+          <p>
+            Most SAR stacks optimise for a narrow set of well-funded deployment
+            contexts. We build foundation models benchmarked explicitly across
+            underrepresented geographies, with documented per-context
+            performance so teams know how a model will behave where they
+            actually operate.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary>Can the models run offline at the edge?</summary>
+        <div class="faq__answer">
+          <p>
+            Yes. Our inference pipelines run fully offline on consumer hardware
+            with 8 GB of RAM, producing analysis-ready output in under 20
+            seconds per scene. Built for field deployment, not just data
+            centres.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary>What sensors and geographies do you cover?</summary>
+        <div class="faq__answer">
+          <p>
+            Published datasets span 18 countries across three continents,
+            prioritising regions with the thinnest labelled SAR coverage.
+            Models are trained primarily on Sentinel-1 C-band, with extensions
+            for commercial SAR sources on request.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary>Is the platform open and interoperable?</summary>
+        <div class="faq__answer">
+          <p>
+            Open by architecture, not by licence. The stack is built on
+            standard geospatial interfaces, so it integrates with the tooling
+            your team already runs, no platform migration, no proprietary
+            format lock-in. Datasets are STAC-catalogued and benchmarks are
+            published alongside every released model.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary>How do you validate model performance for a new region?</summary>
+        <div class="faq__answer">
+          <p>
+            Every released model ships with benchmarks broken down by biome,
+            land cover, and acquisition geometry. For novel contexts, we run
+            validation against ground truth provided or sourced jointly before
+            any deployment decision.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq__item">
+        <summary>What does an engagement typically look like?</summary>
+        <div class="faq__answer">
+          <p>
+            A short scoping conversation, followed by a pilot against your
+            operating context, then production deployment on whatever hardware
+            profile fits your environment. Timelines are weeks, not quarters.
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+
+    <div class="contact__form-col">
+      <p class="section__label">Contact Us</p>
+      <h2 class="contact__title">Get in touch.</h2>
+
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="field-row">
+          <input type="text" name="name" placeholder="Name" autocomplete="name" required />
+          <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+        </div>
+        <input type="text" name="company" placeholder="Company" autocomplete="organization" />
+        <textarea name="message" placeholder="How can we help?" rows="5" required></textarea>
+        <button type="submit" class="btn btn--solid contact-form__submit">Book a demo</button>
+        <p class="contact-form__status" id="contact-form-status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="contact__steps-col">
+      <ol class="steps">
+        <li><span>01</span><strong>See how it works</strong></li>
+        <li><span>02</span><strong>Scope your use case</strong></li>
+        <li><span>03</span><strong>Pilot on your data</strong></li>
+        <li><span>04</span><strong class="is-accent">Production in weeks</strong></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <a href="#top" class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="compare.html">Compare</a>
+      <a href="knowledge.html">Knowledge Base</a>
+      <a href="https://github.com/" rel="noopener">GitHub</a>
+      <a href="#top">OpenEarthStack.ai</a>
+    </nav>
+    <p class="foot__copy">© 2026 OpenEarthStack</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var status = document.getElementById('contact-form-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var fd = new FormData(form);
+      var name = (fd.get('name') || '').toString().trim();
+      var email = (fd.get('email') || '').toString().trim();
+      var company = (fd.get('company') || '').toString().trim();
+      var message = (fd.get('message') || '').toString().trim();
+      if (!name || !email || !message) {
+        if (status) status.textContent = 'Please fill in name, email, and message.';
+        return;
+      }
+      var subject = 'Enquiry from ' + name + (company ? ' (' + company + ')' : '');
+      var body = [
+        'Name: ' + name,
+        'Email: ' + email,
+        'Company: ' + (company || '—'),
+        '',
+        'Message:',
+        message
+      ].join('\r\n');
+      var href = 'mailto:hello@openearthstack.ai'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+      if (status) status.textContent = 'Opening your email client…';
+      window.location.href = href;
+    });
+  })();
+</script>
+
+</body>
+</html>

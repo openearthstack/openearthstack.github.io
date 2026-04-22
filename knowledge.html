@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Knowledge Base | SAR References, Guides, and Deployment Resources</title>
+<meta name="description" content="SAR references, operational guides, and deployment resources for geospatial teams. Built by engineers who ship SAR in production." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand" aria-label="OpenEarthStack home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#build">What We Build</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="index.html" class="btn btn--ghost nav__cta">Back to home</a>
+  </div>
+</header>
+
+<!-- KNOWLEDGE HERO -->
+<section class="chero">
+  <div class="wrap chero__inner">
+    <p class="section__label">Knowledge Base</p>
+    <h1 class="chero__title">Reference Library.</h1>
+    <p class="chero__sub">
+      SAR references, operational guides, and deployment resources for
+      geospatial teams. Built by engineers who ship SAR in production.
+    </p>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="section" id="references">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">References</p>
+      <h2 class="section__title">The SAR fundamentals.</h2>
+    </div>
+
+    <div class="kb-grid">
+
+      <a class="kb" href="sar-glossary.html">
+        <p class="kb__tag">Reference</p>
+        <h3>SAR Glossary</h3>
+        <p>
+          Radar and remote-sensing terms defined, from backscatter and
+          coherence to polarimetry, speckle, and slant range.
+        </p>
+      </a>
+
+      <a class="kb" href="sar-abbreviations.html">
+        <p class="kb__tag">Reference</p>
+        <h3>Abbreviations &amp; Acronyms</h3>
+        <p>
+          The acronyms used in SAR, Earth observation, and operational
+          geospatial workflows.
+        </p>
+      </a>
+
+      <a class="kb" href="sentinel1-modes.html">
+        <p class="kb__tag">Reference</p>
+        <h3>Sentinel-1 Acquisition Modes</h3>
+        <p>
+          Interferometric Wide, Extra Wide, Stripmap, and Wave modes. When
+          each is used and what you get out of it.
+        </p>
+      </a>
+
+      <a class="kb" href="polarization-guide.html">
+        <p class="kb__tag">Reference</p>
+        <h3>Polarization Guide</h3>
+        <p>
+          VV, VH, HH, HV, dual- and quad-pol. What each channel reveals about
+          a scene and when to use which.
+        </p>
+      </a>
+
+      <a class="kb" href="sar-product-types.html">
+        <p class="kb__tag">Reference</p>
+        <h3>SAR Product Types</h3>
+        <p>
+          SLC, GRD, RTC, OCN, and analysis-ready formats. What teams typically
+          ingest, why, and where they diverge.
+        </p>
+      </a>
+
+      <a class="kb" href="data-access.html">
+        <p class="kb__tag">Reference</p>
+        <h3>Data Access Directory</h3>
+        <p>
+          Copernicus Data Space, ASF, AWS Open Data, Planetary Computer. Where
+          to get Sentinel-1 and at what latency.
+        </p>
+      </a>
+
+      <a class="kb" href="stac-basics.html">
+        <p class="kb__tag">Reference · Standards</p>
+        <h3>STAC Specification Basics</h3>
+        <p>
+          How SpatioTemporal Asset Catalogues work and why every modern
+          geospatial stack exposes them.
+        </p>
+      </a>
+
+      <a class="kb" href="cog-vs-zarr.html">
+        <p class="kb__tag">Reference · Standards</p>
+        <h3>Cloud-Optimized GeoTIFF vs ZARR</h3>
+        <p>
+          Two formats for analysis-ready raster data compared, with guidance
+          on when to reach for each in SAR workflows.
+        </p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW-TO -->
+<section class="section section--alt" id="howto">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">How-To Guides</p>
+      <h2 class="section__title">From raw scene to production output.</h2>
+    </div>
+
+    <div class="kb-grid">
+
+      <a class="kb" href="read-sar-image.html">
+        <p class="kb__tag">How-To · Reference</p>
+        <h3>How to Read a SAR Image</h3>
+        <p>
+          Interpreting backscatter, speckle, layover, and foreshortening in a
+          Sentinel-1 scene, without mistaking artefacts for features.
+        </p>
+      </a>
+
+      <a class="kb" href="preprocess-sentinel1.html">
+        <p class="kb__tag">How-To</p>
+        <h3>How to Preprocess Sentinel-1</h3>
+        <p>
+          From raw acquisition to analysis-ready output: orbit application,
+          calibration, speckle filtering, terrain correction.
+        </p>
+      </a>
+
+      <a class="kb" href="insar-time-series.html">
+        <p class="kb__tag">How-To</p>
+        <h3>How to Run an InSAR Time Series</h3>
+        <p>
+          PSI and SBAS approaches to measuring millimetre-scale ground
+          deformation, with a practical step-by-step workflow.
+        </p>
+      </a>
+
+      <a class="kb" href="flood-detection.html">
+        <p class="kb__tag">How-To</p>
+        <h3>How to Detect Floods with SAR</h3>
+        <p>
+          Thresholding, change detection, and hybrid model approaches for
+          rapid flood mapping with Sentinel-1.
+        </p>
+      </a>
+
+      <a class="kb" href="oil-spill-detection.html">
+        <p class="kb__tag">How-To</p>
+        <h3>How to Detect Oil Spills</h3>
+        <p>
+          Dark-patch detection, false-positive filtering, and coastal context
+          for continuous hydrocarbon monitoring.
+        </p>
+      </a>
+
+      <a class="kb" href="ground-deformation.html">
+        <p class="kb__tag">How-To · Standards</p>
+        <h3>How to Monitor Ground Deformation</h3>
+        <p>
+          Production workflows for subsidence, slope instability, and
+          infrastructure deformation at scale.
+        </p>
+      </a>
+
+      <a class="kb" href="evaluate-foundation-model.html">
+        <p class="kb__tag">How-To · Standards</p>
+        <h3>How to Evaluate a SAR Foundation Model</h3>
+        <p>
+          Per-context benchmarks, transfer studies, and failure-mode analysis.
+          The questions to ask before trusting a model in production.
+        </p>
+      </a>
+
+      <a class="kb" href="edge-deployment.html">
+        <p class="kb__tag">How-To</p>
+        <h3>How to Deploy Models at the Edge</h3>
+        <p>
+          Quantization, pruning, and pipeline compression for field-deployable
+          inference on consumer hardware.
+        </p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- STANDARDS / DEEP DIVES -->
+<section class="section" id="standards">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Standards &amp; Deep Dives</p>
+      <h2 class="section__title">When details decide the outcome.</h2>
+    </div>
+
+    <div class="kb-grid">
+
+      <a class="kb" href="radiometric-calibration.html">
+        <p class="kb__tag">Standards</p>
+        <h3>Radiometric Calibration Reference</h3>
+        <p>
+          Beta, sigma, and gamma naught. How SAR radiometric quantities relate
+          and which one to report in your product.
+        </p>
+      </a>
+
+      <a class="kb" href="speckle-filtering.html">
+        <p class="kb__tag">Standards</p>
+        <h3>Speckle Filtering Compared</h3>
+        <p>
+          Lee, Frost, Gamma-MAP, Refined Lee. When each works, when it
+          doesn't, and what the trade-offs look like in practice.
+        </p>
+      </a>
+
+      <a class="kb" href="biome-performance.html">
+        <p class="kb__tag">Standards</p>
+        <h3>Per-Biome Model Performance</h3>
+        <p>
+          What 'good' actually looks like for SAR models in tropical,
+          temperate, arid, and arctic biomes.
+        </p>
+      </a>
+
+      <a class="kb" href="benchmarking-geographies.html">
+        <p class="kb__tag">Standards</p>
+        <h3>Benchmarking Across Geographies</h3>
+        <p>
+          Design principles for fair, reproducible SAR benchmarks that
+          generalise honestly to new deployment contexts.
+        </p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPLORE MORE -->
+<section class="section section--alt" id="more">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Explore More</p>
+      <h2 class="section__title">Beyond the reference library.</h2>
+    </div>
+
+    <div class="features">
+      <a class="feature feature--link" href="index.html#build">
+        <h3>Platform</h3>
+        <p>
+          Analysis-ready datasets, foundation models, edge inference, and
+          open tooling. The full OpenEarthStack.
+        </p>
+        <span class="feature__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="feature feature--link" href="compare.html">
+        <h3>Compare</h3>
+        <p>
+          How OpenEarthStack compares to SAR operators, foundation models,
+          and cloud platforms.
+        </p>
+        <span class="feature__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="feature feature--link" href="index.html#faq">
+        <h3>FAQ</h3>
+        <p>
+          Deployment modes, openness, validation methodology, engagement.
+          The questions most teams ask first.
+        </p>
+        <span class="feature__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact__inner">
+
+    <div class="contact__form-col">
+      <p class="section__label">Ready to Deploy SAR in Production?</p>
+      <h2 class="contact__title">Get in touch.</h2>
+
+      <form class="contact-form" id="contact-form" novalidate>
+        <div class="field-row">
+          <input type="text" name="name" placeholder="Name" autocomplete="name" required />
+          <input type="email" name="email" placeholder="Email" autocomplete="email" required />
+        </div>
+        <input type="text" name="company" placeholder="Company" autocomplete="organization" />
+        <textarea name="message" placeholder="How can we help?" rows="5" required></textarea>
+        <button type="submit" class="btn btn--solid contact-form__submit">Book a demo</button>
+        <p class="contact-form__status" id="contact-form-status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="contact__steps-col">
+      <ol class="steps">
+        <li><span>01</span><strong>See how it works</strong></li>
+        <li><span>02</span><strong>Scope your use case</strong></li>
+        <li><span>03</span><strong>Pilot on your data</strong></li>
+        <li><span>04</span><strong class="is-accent">Production in weeks</strong></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <a href="index.html" class="brand">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="compare.html">Compare</a>
+      <a href="knowledge.html">Knowledge Base</a>
+      <a href="https://github.com/" rel="noopener">GitHub</a>
+      <a href="index.html">OpenEarthStack.ai</a>
+    </nav>
+    <p class="foot__copy">© 2026 OpenEarthStack</p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var form = document.getElementById('contact-form');
+    if (!form) return;
+    var status = document.getElementById('contact-form-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var fd = new FormData(form);
+      var name = (fd.get('name') || '').toString().trim();
+      var email = (fd.get('email') || '').toString().trim();
+      var company = (fd.get('company') || '').toString().trim();
+      var message = (fd.get('message') || '').toString().trim();
+      if (!name || !email || !message) {
+        if (status) status.textContent = 'Please fill in name, email, and message.';
+        return;
+      }
+      var subject = 'Enquiry from ' + name + (company ? ' (' + company + ')' : '');
+      var body = [
+        'Name: ' + name,
+        'Email: ' + email,
+        'Company: ' + (company || '—'),
+        '',
+        'Message:',
+        message
+      ].join('\r\n');
+      var href = 'mailto:hello@openearthstack.ai'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+      if (status) status.textContent = 'Opening your email client…';
+      window.location.href = href;
+    });
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Polarization Guide | OpenEarthStack Knowledge Base</title>
+<meta name="description" content="VV, VH, HH, HV, dual- and quad-polarisation. What each channel tells you about a scene." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand" aria-label="OpenEarthStack home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#build">What We Build</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="knowledge.html" class="btn btn--ghost nav__cta">Back to library</a>
+  </div>
+</header>
+
+<section class="chero">
+  <div class="wrap chero__inner">
+    <p class="section__label">Reference</p>
+    <h1 class="chero__title">Polarization Guide.</h1>
+    <p class="chero__sub">SAR transmits and receives on a chosen polarisation. The channel you pick changes what the scene tells you.</p>
+  </div>
+</section>
+
+<section class="section article">
+  <div class="wrap article__inner">
+
+    <h2>Single-pol channels</h2>
+    <dl class="dl">
+      <dt>VV</dt><dd>Vertical transmit, vertical receive. Dominant channel for bare soil, agriculture, and urban surfaces. Standard over land.</dd>
+      <dt>VH</dt><dd>Vertical transmit, horizontal receive. Cross-polarised returns are weaker but highly sensitive to volume scattering, making VH valuable for vegetation biomass and forest monitoring.</dd>
+      <dt>HH</dt><dd>Horizontal transmit, horizontal receive. Strong response over ice and some flood-water surfaces. Widely used in cryosphere and maritime applications.</dd>
+      <dt>HV</dt><dd>Horizontal transmit, vertical receive. Cross-polarised. Similar interpretation to VH.</dd>
+    </dl>
+
+    <h2>Dual-polarisation</h2>
+    <p>Two channels acquired together: commonly VV+VH (the Sentinel-1 IW default) or HH+HV. The ratio between co-pol and cross-pol is itself informative — it highlights vegetation, helps separate urban from bare surfaces, and feeds most operational classifiers.</p>
+
+    <h2>Quad-polarisation</h2>
+    <p>All four channels (HH, HV, VH, VV). Enables polarimetric decompositions such as Pauli, Freeman-Durden, and Cloude-Pottier, but at the cost of a much narrower swath. Not available on Sentinel-1; ALOS-2, RADARSAT-2, and some commercial sensors offer it.</p>
+
+    <h2>Which polarisation do I use?</h2>
+    <ul>
+      <li><strong>Flood mapping:</strong> VV for open water; VH helps separate flooded vegetation.</li>
+      <li><strong>Agriculture and forest:</strong> VV+VH, with VH often the stronger predictor.</li>
+      <li><strong>Sea ice and oil spills:</strong> HH preferred where available; VV on Sentinel-1.</li>
+      <li><strong>InSAR:</strong> Co-pol (VV or HH) for best coherence.</li>
+    </ul>
+
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Related</p>
+      <h2 class="section__title">Keep going.</h2>
+    </div>
+    <div class="features">
+      <a class="feature feature--link" href="sar-glossary.html"><h3>SAR Glossary</h3><p>Terms behind the polarimetry.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="sentinel1-modes.html"><h3>Sentinel-1 Modes</h3><p>Which mode carries which polarisations.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="flood-detection.html"><h3>Flood Detection</h3><p>Polarisation choices for flood mapping.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <a href="index.html" class="brand"><span class="brand__mark" aria-hidden="true"></span><span class="brand__name">OpenEarthStack</span></a>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="compare.html">Compare</a>
+      <a href="knowledge.html">Knowledge Base</a>
+      <a href="https://github.com/" rel="noopener">GitHub</a>
+      <a href="index.html">OpenEarthStack.ai</a>
+    </nav>
+    <p class="foot__copy">© 2026 OpenEarthStack</p>
+  </div>
+</footer>
+
+</body>
+</html>

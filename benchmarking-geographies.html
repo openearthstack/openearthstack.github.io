@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Benchmarking Across Geographies | OpenEarthStack Knowledge Base</title>
+<meta name="description" content="How to design SAR benchmarks that generalise honestly to the places where operational deployments happen." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand" aria-label="OpenEarthStack home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#build">What We Build</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="knowledge.html" class="btn btn--ghost nav__cta">Back to library</a>
+  </div>
+</header>
+
+<section class="chero">
+  <div class="wrap chero__inner">
+    <p class="section__label">Standards</p>
+    <h1 class="chero__title">Benchmarking Across Geographies.</h1>
+    <p class="chero__sub">Most public SAR benchmarks systematically under-sample the places where operational deployments actually happen. Designing a better benchmark is not optional.</p>
+  </div>
+</section>
+
+<section class="section article">
+  <div class="wrap article__inner">
+
+    <h2>The failure mode</h2>
+    <p>Public benchmarks are dominated by regions with dense labelled data: Europe, North America, parts of East Asia. Models trained and evaluated on these regions transfer poorly to the Sahel, the Amazon, Central Asia, and the Pacific. The benchmark score looks good; the field deployment fails.</p>
+
+    <h2>Design principles</h2>
+    <ol>
+      <li><strong>Sample geographically.</strong> Include biomes and continents in proportion to where the model will be deployed, not where labels are easy to collect.</li>
+      <li><strong>Test on held-out geographies.</strong> A random-scene split is not a generalisation test; a held-out continent or biome is.</li>
+      <li><strong>Fix the split publicly.</strong> Publish the exact train / val / test geographies so others can reproduce without peeking.</li>
+      <li><strong>Document label provenance.</strong> Human-annotated? Derived from another sensor? Known-wrong anywhere? All of this matters.</li>
+      <li><strong>Report worst-case metrics.</strong> The mean matters less than the per-region minimum.</li>
+      <li><strong>Cover ascending and descending orbits.</strong> They differ physically; a model good on one can fail on the other.</li>
+    </ol>
+
+    <h2>Public efforts worth knowing</h2>
+    <ul>
+      <li><strong>EuroSAT, BigEarthNet, xView2:</strong> widely used, regionally biased.</li>
+      <li><strong>Sen1Floods11:</strong> global flood benchmark with geographic splits.</li>
+      <li><strong>SpaceNet 6:</strong> SAR-optical multimodal building footprint benchmark.</li>
+      <li><strong>DFC (Data Fusion Contest) series:</strong> annual community benchmarks with rotating themes.</li>
+    </ul>
+
+    <div class="callout">
+      Publish a benchmark that can embarrass your own model in regions you care about. If it can only say you did well, it cannot tell you when you will fail.
+    </div>
+
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Related</p>
+      <h2 class="section__title">Keep going.</h2>
+    </div>
+    <div class="features">
+      <a class="feature feature--link" href="evaluate-foundation-model.html"><h3>Evaluate a Foundation Model</h3><p>Using benchmarks to decide before deploying.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="biome-performance.html"><h3>Per-Biome Model Performance</h3><p>The breakdown your benchmark should report.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="ground-deformation.html"><h3>Ground Deformation</h3><p>Validation for InSAR workloads.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <a href="index.html" class="brand"><span class="brand__mark" aria-hidden="true"></span><span class="brand__name">OpenEarthStack</span></a>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="compare.html">Compare</a>
+      <a href="knowledge.html">Knowledge Base</a>
+      <a href="https://github.com/" rel="noopener">GitHub</a>
+      <a href="index.html">OpenEarthStack.ai</a>
+    </nav>
+    <p class="foot__copy">© 2026 OpenEarthStack</p>
+  </div>
+</footer>
+
+</body>
+</html>

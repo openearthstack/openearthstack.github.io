@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SAR Glossary | OpenEarthStack Knowledge Base</title>
+<meta name="description" content="Core SAR and remote-sensing terms defined, from backscatter and coherence to polarimetry and interferometry." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand" aria-label="OpenEarthStack home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#build">What We Build</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="knowledge.html" class="btn btn--ghost nav__cta">Back to library</a>
+  </div>
+</header>
+
+<section class="chero">
+  <div class="wrap chero__inner">
+    <p class="section__label">Reference</p>
+    <h1 class="chero__title">SAR Glossary.</h1>
+    <p class="chero__sub">The core vocabulary of synthetic aperture radar, defined once, for quick reference during production work.</p>
+  </div>
+</section>
+
+<section class="section article">
+  <div class="wrap article__inner">
+
+    <h2>Core concepts</h2>
+    <dl class="dl">
+      <dt>SAR</dt><dd>Synthetic Aperture Radar. Active radar imaging that synthesises a large virtual antenna from a moving platform.</dd>
+      <dt>Backscatter</dt><dd>Portion of the radar signal reflected back to the sensor. Usually reported as sigma naught in dB.</dd>
+      <dt>Speckle</dt><dd>Salt-and-pepper noise inherent to coherent imaging. Multiplicative, not additive.</dd>
+      <dt>Coherence</dt><dd>Phase similarity between two SAR acquisitions. Ranges 0–1. Critical for InSAR.</dd>
+      <dt>Incidence angle</dt><dd>Angle between the radar beam and the vertical at the target. Affects backscatter intensity.</dd>
+      <dt>Slant range</dt><dd>Line-of-sight distance from sensor to target.</dd>
+      <dt>Ground range</dt><dd>Horizontal distance from nadir to target on the Earth surface.</dd>
+      <dt>Azimuth</dt><dd>Along-track direction (flight direction of the platform).</dd>
+      <dt>Multilooking</dt><dd>Averaging neighbouring pixels to reduce speckle at the cost of resolution.</dd>
+    </dl>
+
+    <h2>Polarimetry</h2>
+    <dl class="dl">
+      <dt>VV</dt><dd>Vertical transmit, vertical receive. Dominant for most land surfaces.</dd>
+      <dt>VH</dt><dd>Vertical transmit, horizontal receive. Cross-polarised; sensitive to volume scattering in vegetation.</dd>
+      <dt>HH</dt><dd>Horizontal transmit, horizontal receive. Used for ice, snow, some flood-mapping contexts.</dd>
+      <dt>HV</dt><dd>Horizontal transmit, vertical receive. Cross-polarised; similar sensitivity to VH.</dd>
+      <dt>Dual-pol</dt><dd>Two channels (usually VV+VH). Standard for Sentinel-1 IW mode.</dd>
+      <dt>Quad-pol</dt><dd>All four channels. Information-rich but narrow swath.</dd>
+    </dl>
+
+    <h2>Interferometry</h2>
+    <dl class="dl">
+      <dt>InSAR</dt><dd>Interferometric SAR. Uses phase differences between two SLC acquisitions to measure line-of-sight displacement or topography.</dd>
+      <dt>Interferogram</dt><dd>Phase difference image between two co-registered SLCs.</dd>
+      <dt>PSI</dt><dd>Persistent Scatterer Interferometry. Uses stable point scatterers to produce mm-accuracy deformation time series.</dd>
+      <dt>SBAS</dt><dd>Small Baseline Subset. Combines small-baseline interferograms for distributed-scatterer time series.</dd>
+      <dt>Baseline</dt><dd>Geometric separation between two SAR acquisitions. Small baselines improve coherence.</dd>
+    </dl>
+
+    <h2>Radiometric quantities</h2>
+    <dl class="dl">
+      <dt>Beta naught (β⁰)</dt><dd>Radar brightness per unit slant-range area.</dd>
+      <dt>Sigma naught (σ⁰)</dt><dd>Normalised radar cross-section per unit ground area. Standard reporting.</dd>
+      <dt>Gamma naught (γ⁰)</dt><dd>Normalised by area perpendicular to the look direction. Slope-independent.</dd>
+    </dl>
+
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Related</p>
+      <h2 class="section__title">Keep going.</h2>
+    </div>
+    <div class="features">
+      <a class="feature feature--link" href="sar-abbreviations.html"><h3>Abbreviations &amp; Acronyms</h3><p>The acronyms you will meet across SAR and EO workflows.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="polarization-guide.html"><h3>Polarization Guide</h3><p>What each polarisation channel reveals about a scene.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="radiometric-calibration.html"><h3>Radiometric Calibration</h3><p>Beta, sigma, and gamma naught explained.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <a href="index.html" class="brand"><span class="brand__mark" aria-hidden="true"></span><span class="brand__name">OpenEarthStack</span></a>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="compare.html">Compare</a>
+      <a href="knowledge.html">Knowledge Base</a>
+      <a href="https://github.com/" rel="noopener">GitHub</a>
+      <a href="index.html">OpenEarthStack.ai</a>
+    </nav>
+    <p class="foot__copy">© 2026 OpenEarthStack</p>
+  </div>
+</footer>
+
+</body>
+</html>

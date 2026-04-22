@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>How to Monitor Ground Deformation | OpenEarthStack Knowledge Base</title>
+<meta name="description" content="Using InSAR to monitor subsidence, slope instability, and infrastructure deformation at scale." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="wrap nav__inner">
+    <a href="index.html" class="brand" aria-label="OpenEarthStack home">
+      <span class="brand__mark" aria-hidden="true"></span>
+      <span class="brand__name">OpenEarthStack</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#build">What We Build</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="knowledge.html" class="btn btn--ghost nav__cta">Back to library</a>
+  </div>
+</header>
+
+<section class="chero">
+  <div class="wrap chero__inner">
+    <p class="section__label">How-To · Standards</p>
+    <h1 class="chero__title">How to Monitor Ground Deformation.</h1>
+    <p class="chero__sub">SAR interferometry is the only remote-sensing technique that routinely measures mm-scale surface movement at regional scale. The deployment question is choosing the right workflow for the terrain.</p>
+  </div>
+</section>
+
+<section class="section article">
+  <div class="wrap article__inner">
+
+    <h2>Applications</h2>
+    <ul>
+      <li><strong>Subsidence:</strong> groundwater extraction, mining, permafrost thaw.</li>
+      <li><strong>Slope instability:</strong> landslides, open-pit mines, tailings dams.</li>
+      <li><strong>Infrastructure:</strong> bridges, dams, transport corridors, pipelines.</li>
+      <li><strong>Volcanoes and tectonics:</strong> inflation, rifting, co-seismic displacement.</li>
+    </ul>
+
+    <h2>Urban and infrastructure: PSI</h2>
+    <p>Persistent Scatterer Interferometry excels where many pixels remain coherent over years: cities, industrial sites, rock faces. It produces per-point velocities with mm-level precision, but only where stable scatterers exist.</p>
+
+    <h2>Natural terrain: SBAS</h2>
+    <p>Small Baseline Subset handles vegetated and agricultural land better by combining short-baseline interferograms. It produces gridded velocity fields rather than point clouds, at the cost of coarser spatial resolution.</p>
+
+    <h2>Line-of-sight interpretation</h2>
+    <p>InSAR measures displacement along the radar line-of-sight only. A vertical-only event (subsidence) is partially sampled; a horizontal-only event (strike-slip faulting) differs between ascending and descending tracks. Combine ascending and descending passes to decompose into vertical and east-west components where needed.</p>
+
+    <h2>Reliability checks</h2>
+    <ul>
+      <li><strong>Coherence.</strong> Exclude low-coherence pixels; trust outputs only above roughly 0.3–0.4 depending on scenario.</li>
+      <li><strong>Reference point.</strong> All InSAR velocities are relative. Pick a stable reference and report it.</li>
+      <li><strong>Atmospheric residuals.</strong> Troposphere and ionosphere add noise. Weather-model corrections (GACOS, ERA-5) help.</li>
+    </ul>
+
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="section__label">Related</p>
+      <h2 class="section__title">Keep going.</h2>
+    </div>
+    <div class="features">
+      <a class="feature feature--link" href="insar-time-series.html"><h3>InSAR Time Series</h3><p>PSI vs SBAS, step by step.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="sar-product-types.html"><h3>SAR Product Types</h3><p>Why deformation starts with SLC.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+      <a class="feature feature--link" href="benchmarking-geographies.html"><h3>Benchmarking Across Geographies</h3><p>Validating deformation outputs honestly.</p><span class="feature__arrow" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <a href="index.html" class="brand"><span class="brand__mark" aria-hidden="true"></span><span class="brand__name">OpenEarthStack</span></a>
+    <nav class="foot__links" aria-label="Footer">
+      <a href="compare.html">Compare</a>
+      <a href="knowledge.html">Knowledge Base</a>
+      <a href="https://github.com/" rel="noopener">GitHub</a>
+      <a href="index.html">OpenEarthStack.ai</a>
+    </nav>
+    <p class="foot__copy">© 2026 OpenEarthStack</p>
+  </div>
+</footer>
+
+</body>
+</html>

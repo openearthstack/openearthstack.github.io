@@ -1288,7 +1288,21 @@ em { font-style: normal; color: var(--accent); }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 900px) {
-  .nav__links { display: none; }
+  /* Nav wraps to two rows: brand on top, links below. CTA hidden. */
+  .nav__inner { flex-wrap: wrap; row-gap: 10px; padding-block: 12px; }
+  .nav__cta { display: none; }
+  .nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    width: 100%;
+    order: 3;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  .nav__links a::after { display: none; }
+
   .stack { grid-template-columns: 1fr; }
   .results { grid-template-columns: 1fr; }
   .result {
@@ -1297,11 +1311,61 @@ em { font-style: normal; color: var(--accent); }
     border-bottom: 1px solid var(--rule);
   }
   .result:last-child { border-bottom: 0; }
+
+  /* Use cases: drop the orphan-separator problem on wrapped rows */
+  .usecases { gap: 10px 18px; }
+  .usecases li + li::before { display: none; }
+
+  /* Tighter vertical rhythm inside stacked contact section */
+  .contact__form-col,
+  .contact__steps-col { padding-block: 56px; }
+
+  .teamfrom { padding-block: 28px 32px; }
+  .teamfrom__label { margin-bottom: 16px; }
+
+  /* Hero + chero heights don't need to be huge on mobile */
+  .hero { padding-block: 96px 72px; }
+  .chero { padding-block: 72px 48px; }
 }
 
 @media (max-width: 560px) {
   .foot__inner { flex-direction: column; align-items: flex-start; }
-  .usecases li + li::before { margin-inline: 14px; }
+  .foot__links { flex-wrap: wrap; gap: 12px 18px; }
+
+  /* Display type sized for narrow viewports */
+  .hero__title  { font-size: clamp(36px, 11vw, 112px); line-height: 1; }
+  .chero__title { font-size: clamp(28px, 8.5vw, 88px); line-height: 1.04; }
+  .section__title { font-size: clamp(26px, 7.5vw, 64px); }
+  .problem__text  { font-size: clamp(26px, 7.5vw, 60px); }
+  .cta__title     { font-size: clamp(26px, 7.5vw, 50px); }
+  .contact__title { font-size: clamp(28px, 8vw, 52px); }
+
+  /* Contact steps list more compact */
+  .steps li { grid-template-columns: 30px 1fr; gap: 14px; padding: 18px 0; }
+  .steps li strong { font-size: clamp(18px, 5.5vw, 30px); }
+
+  /* Founder cards read well stacked on narrow */
+  .founder__name { font-size: clamp(26px, 8.5vw, 48px); }
+  .founder__tags { gap: 6px; }
+  .founder__links { gap: 14px; row-gap: 10px; }
+
+  /* FAQ tweaks */
+  .faq__head { align-items: flex-start; }
+  .faq__cta { align-self: flex-start; }
+  .faq__item summary { gap: 16px; }
+  .faq__answer { padding-right: 0; }
+
+  /* Hero CTAs breathe on small screens */
+  .hero__ctas .btn { width: 100%; justify-content: center; }
+
+  /* Smaller padding around sections, keep content legible */
+  .section { padding-block: 64px; }
+  .hero { padding-block: 72px 56px; }
+  .chero { padding-block: 56px 32px; }
+
+  /* Stack card typography scales down */
+  .stack__card h3 { font-size: clamp(20px, 6.2vw, 30px); }
+  .result__stat { font-size: clamp(36px, 11vw, 72px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

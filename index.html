@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OpenEarthStack | Open Geospatial AI Infrastructure</title>
-<meta name="description" content="OpenEarthStack builds the full stack for operational SAR intelligence: analysis-ready data, foundation models, edge inference, and open tooling." />
+<title>OpenEarthStack | SAR Infrastructure Monitoring</title>
+<meta name="description" content="Commercial SAR infrastructure monitoring — dam and tailings stability, pipeline integrity, bridge deformation, urban subsidence — in the markets where coverage has been thinnest." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -96,13 +96,15 @@
 
   <div class="wrap hero__inner">
     <h1 class="hero__title">
-      Making the Earth <em>observable</em><br />for everyone.
+      Bringing SAR capabilities<br />to where the <em>data gaps</em><br />are largest.
     </h1>
 
     <p class="hero__sub">
-      SAR satellites image the entire planet, through cloud, at night, in any
-      conditions. The AI infrastructure to make that data usable has been
-      missing. We are building it.
+      SAR measures millimetre-scale displacement through cloud, at night, in
+      any conditions. We operationalise it for commercial infrastructure
+      monitoring — dams, pipelines, bridges, pit walls, urban assets — in the
+      markets and asset classes where commercial SAR coverage has been
+      thinnest.
     </p>
 
     <div class="hero__ctas">
@@ -151,27 +153,28 @@
   <div class="wrap">
     <div class="section__head">
       <p class="section__label">What We Build</p>
-      <h2 class="section__title">The full stack of AI infrastructure for operational SAR.</h2>
+      <h2 class="section__title">The full SAR stack for operational infrastructure monitoring.</h2>
     </div>
 
     <div class="stack">
       <article class="stack__card">
         <div class="stack__num">01</div>
-        <h3>Analysis-Ready Data</h3>
+        <h3>Analysis-Ready SAR</h3>
         <p>
-          Preprocessed, labelled SAR datasets for the geographies and contexts
-          where labelled data is thinnest. STAC-catalogued. Optimised for low
-          bandwidth.
+          Preprocessed Sentinel-1 tuned for infrastructure monitoring:
+          InSAR-ready time series, calibrated amplitude, coherence stacks.
+          STAC-catalogued. Optimised for low bandwidth.
         </p>
       </article>
 
       <article class="stack__card">
         <div class="stack__num">02</div>
-        <h3>Foundation Models</h3>
+        <h3>Deformation &amp; Damage Models</h3>
         <p>
-          Fine-tuned on underrepresented geographies. Published with
-          per-context benchmarks. Teams know how a model performs in their
-          deployment context before they ship.
+          Foundation models for ground deformation, structural movement, and
+          post-event damage. Benchmarked per asset class and operating
+          context, so teams know how a model will perform on their portfolio
+          before they deploy.
         </p>
       </article>
 
@@ -179,8 +182,9 @@
         <div class="stack__num">03</div>
         <h3>Edge Inference</h3>
         <p>
-          Full pipelines running on 8 GB RAM in under 20 seconds. Offline.
-          Field-deployable. The same capability as a data centre, on a laptop.
+          Monitoring pipelines running offline on 8 GB RAM in under 20
+          seconds per scene. Field teams run the same workflow as a data
+          centre, on a laptop.
         </p>
       </article>
 
@@ -188,8 +192,9 @@
         <div class="stack__num">04</div>
         <h3>Open Tooling</h3>
         <p>
-          End-to-end workflows from raw Sentinel-1 to analysis-ready output.
-          Documented. Modular. Every improvement compounds.
+          End-to-end workflows from raw Sentinel-1 to displacement maps,
+          damage layers, and alerts. Documented, modular, reproducible. Every
+          improvement compounds.
         </p>
       </article>
     </div>
@@ -227,8 +232,8 @@
   <div class="wrap problem__inner">
     <p class="section__label">The Problem</p>
     <p class="problem__text">
-      The satellites see the whole planet. The tools to use them serve a
-      fraction of it. <em>We are closing that gap.</em>
+      Operators hold assets where commercial SAR monitoring has never been
+      priced to reach. <em>We are closing that gap.</em>
     </p>
   </div>
 </section>
@@ -238,11 +243,11 @@
   <div class="wrap">
     <p class="section__label">Use Cases</p>
     <ul class="usecases" aria-label="Use cases">
-      <li>Oil spill detection</li>
-      <li>Mining site monitoring</li>
-      <li>Crop insurance</li>
-      <li>Urban change mapping</li>
-      <li>Structural deformation</li>
+      <li>Dam and tailings stability</li>
+      <li>Bridge and highway deformation</li>
+      <li>Pipeline and linear-asset integrity</li>
+      <li>Urban subsidence</li>
+      <li>Post-event structural damage</li>
     </ul>
   </div>
 </section>
@@ -263,11 +268,11 @@
         <summary>How is OpenEarthStack different from other SAR analytics providers?</summary>
         <div class="faq__answer">
           <p>
-            Most SAR stacks optimise for a narrow set of well-funded deployment
-            contexts. We build foundation models benchmarked explicitly across
-            underrepresented geographies, with documented per-context
-            performance so teams know how a model will behave where they
-            actually operate.
+            Most commercial SAR stacks are priced and tuned for a narrow set
+            of asset classes and geographies. We build foundation models
+            benchmarked explicitly across the infrastructure contexts —
+            tailings dams, pipelines, urban subsidence, linear transport
+            assets — where operators have been forced to monitor blind.
           </p>
         </div>
       </details>
@@ -276,22 +281,23 @@
         <summary>Can the models run offline at the edge?</summary>
         <div class="faq__answer">
           <p>
-            Yes. Our inference pipelines run fully offline on consumer hardware
-            with 8 GB of RAM, producing analysis-ready output in under 20
-            seconds per scene. Built for field deployment, not just data
-            centres.
+            Yes. Inference pipelines run fully offline on 8 GB of RAM,
+            producing analysis-ready output in under 20 seconds per scene.
+            Built for on-site operations and constrained networks, not just
+            cloud data centres.
           </p>
         </div>
       </details>
 
       <details class="faq__item">
-        <summary>What sensors and geographies do you cover?</summary>
+        <summary>What sensors and asset classes do you cover?</summary>
         <div class="faq__answer">
           <p>
-            Published datasets span 18 countries across three continents,
-            prioritising regions with the thinnest labelled SAR coverage.
-            Models are trained primarily on Sentinel-1 C-band, with extensions
-            for commercial SAR sources on request.
+            Models are trained primarily on Sentinel-1 C-band InSAR and
+            amplitude products, with extensions for commercial SAR on
+            request. Benchmarks span dams, tailings facilities, pipelines,
+            bridges, highways, and dense urban subsidence settings across 18
+            countries and three continents.
           </p>
         </div>
       </details>
@@ -310,24 +316,26 @@
       </details>
 
       <details class="faq__item">
-        <summary>How do you validate model performance for a new region?</summary>
+        <summary>How do you validate performance on a specific asset or region?</summary>
         <div class="faq__answer">
           <p>
-            Every released model ships with benchmarks broken down by biome,
-            land cover, and acquisition geometry. For novel contexts, we run
-            validation against ground truth provided or sourced jointly before
-            any deployment decision.
+            Every released model ships with benchmarks broken down by asset
+            class, biome, land cover, and acquisition geometry. For a
+            specific portfolio we run validation against ground truth
+            provided or sourced jointly, with pass criteria agreed before any
+            production decision.
           </p>
         </div>
       </details>
 
       <details class="faq__item">
-        <summary>What does an engagement typically look like?</summary>
+        <summary>What does a commercial engagement look like?</summary>
         <div class="faq__answer">
           <p>
-            A short scoping conversation, followed by a pilot against your
-            operating context, then production deployment on whatever hardware
-            profile fits your environment. Timelines are weeks, not quarters.
+            A short scoping conversation, a pilot against your operating
+            context, then production deployment on whatever hardware and
+            delivery mode fits — cloud, on-prem, or edge. Timelines are
+            weeks, not quarters.
           </p>
         </div>
       </details>

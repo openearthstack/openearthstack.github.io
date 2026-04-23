@@ -223,6 +223,8 @@ em { font-style: normal; color: var(--accent); }
   letter-spacing: -0.035em;
   margin: 0 0 32px;
   color: var(--ink);
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 .hero__title em {
   font-style: normal;
@@ -344,6 +346,7 @@ em { font-style: normal; color: var(--accent); }
   letter-spacing: -0.028em;
   margin: 0;
   color: var(--ink);
+  overflow-wrap: break-word;
 }
 .section__title em {
   font-style: normal;
@@ -1333,7 +1336,7 @@ em { font-style: normal; color: var(--accent); }
   .foot__links { flex-wrap: wrap; gap: 12px 18px; }
 
   /* Display type sized for narrow viewports */
-  .hero__title  { font-size: clamp(36px, 11vw, 112px); line-height: 1; }
+  .hero__title  { font-size: clamp(34px, 9.4vw, 88px); line-height: 1.02; }
   .chero__title { font-size: clamp(28px, 8.5vw, 88px); line-height: 1.04; }
   .section__title { font-size: clamp(26px, 7.5vw, 64px); }
   .problem__text  { font-size: clamp(26px, 7.5vw, 60px); }

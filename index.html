@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>OpenEarthStack | SAR Monitoring for Critical Infrastructure</title>
-<meta name="description" content="Satellite-based monitoring for critical infrastructure. Ground-movement and damage data for pipelines, power grids, bridges, and transport corridors." />
+<title>OpenEarthStack: SAR Intelligence Where the Data Gaps Are Largest</title>
+<meta name="description" content="We build the data infrastructure and AI tools that make satellite radar usable, starting where the need is most real and the tools are least adapted." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,7 +22,6 @@
     </a>
     <nav class="nav__links" aria-label="Primary">
       <a href="#build">What We Build</a>
-      <a href="#results">Results</a>
       <a href="team.html">Team</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -95,15 +94,15 @@
   </div>
 
   <div class="wrap hero__inner">
-    <p class="section__label">Satellite monitoring for critical infrastructure</p>
+    <p class="section__label">Satellite radar intelligence</p>
     <h1 class="hero__title">
-      Monitor every pipeline, bridge, and power line. <em>From space.</em>
+      Bringing SAR capabilities to where the <em>data gaps</em> are largest.
     </h1>
 
     <p class="hero__sub">
-      We turn satellite radar into ground-movement and damage data for
-      pipelines, power grids, bridges, and transport corridors. Your team
-      sees problems weeks before they become outages.
+      OpenEarthStack builds the data infrastructure and AI tools that make
+      satellite radar usable, starting where the need is most real and the
+      tools are least adapted.
     </p>
 
     <div class="hero__ctas">
@@ -122,7 +121,6 @@
       <div class="teamfrom__group">
         <span>HOTOSM</span>
         <span>London School of Economics</span>
-        <span>Imperial College London</span>
         <span>University of Münster</span>
         <span>Universitat Jaume I</span>
         <span>United Nations</span>
@@ -134,7 +132,6 @@
       <div class="teamfrom__group" aria-hidden="true">
         <span>HOTOSM</span>
         <span>London School of Economics</span>
-        <span>Imperial College London</span>
         <span>University of Münster</span>
         <span>Universitat Jaume I</span>
         <span>United Nations</span>
@@ -152,54 +149,33 @@
   <div class="wrap">
     <div class="section__head">
       <p class="section__label">What We Build</p>
-      <h2 class="section__title">End-to-end satellite monitoring for critical infrastructure.</h2>
+      <h2 class="section__title">Data infrastructure and intelligence tools, built together.</h2>
     </div>
 
     <div class="stack">
       <article class="stack__card">
         <div class="stack__num">01</div>
-        <h3>Radar data, ready on day one.</h3>
+        <h3>Analysis-Ready SAR</h3>
         <p>
-          We turn raw satellite radar into ground-movement maps.
-          Analysis-ready on delivery, straight into your existing tools.
+          Getting from raw satellite radar to something usable takes at
+          least six processing steps before any analysis can begin. We
+          handle all of it: atmospheric corrections, orbit refinements,
+          coregistration. The data is usable the moment it arrives.
         </p>
       </article>
 
       <article class="stack__card">
         <div class="stack__num">02</div>
-        <h3>Movement and damage, caught early.</h3>
+        <h3>Intelligence Layers</h3>
         <p>
-          Millimetre-precision ground movement, plus structural-change
-          alerts from every new scene. Delivered as COG, STAC, and Zarr,
-          ready for your existing GIS and asset management tools.
+          Deformation detection, flood mapping, structural change, damage
+          assessment. We build the AI models and processing pipelines that
+          turn analysis-ready data into answers people can act on, trained
+          and evaluated on the geographies where they will actually be
+          used.
         </p>
       </article>
 
-    </div>
-  </div>
-</section>
-
-<!-- RESULTS -->
-<section class="section section--alt" id="results">
-  <div class="wrap">
-    <div class="section__head">
-      <p class="section__label">Progress</p>
-      <h2 class="section__title">Already in production.</h2>
-    </div>
-
-    <div class="results">
-      <div class="result">
-        <div class="result__stat">12M km²</div>
-        <p>Actively monitored.</p>
-      </div>
-      <div class="result">
-        <div class="result__stat">2,200+</div>
-        <p>SAR scenes processed.</p>
-      </div>
-      <div class="result">
-        <div class="result__stat">9</div>
-        <p>Data product.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -210,10 +186,15 @@
   <div class="wrap problem__inner">
     <p class="section__label">The Problem</p>
     <p class="problem__text">
-      The world runs on millions of kilometres of pipelines, bridges, and
-      power lines. Most of it gets inspected once a year, at best.
-      Satellite radar can watch every metre, every week. <em>We're bringing
-      it to the operators.</em>
+      Satellites collect radar data over every part of the earth, every few
+      days. Unlike optical imagery, it works through cloud cover, at night,
+      and in the conditions where ground-truth matters most. The capability
+      is there. The data is there. What is missing is the infrastructure
+      that makes it usable, and the AI tools that turn it into answers
+      people can act on. The models that exist were trained almost entirely
+      on Western geographies. The processing tooling assumes resources and
+      expertise that most practitioners do not have. <em>No one is building
+      both layers together, starting where the need is greatest. We are.</em>
     </p>
   </div>
 </section>
@@ -223,12 +204,12 @@
   <div class="wrap">
     <p class="section__label">Use Cases</p>
     <ul class="usecases" aria-label="Use cases">
-      <li>Pipeline right-of-way monitoring</li>
-      <li>Transmission corridor deformation</li>
-      <li>Bridge and highway subsidence</li>
+      <li>Flood mapping through cloud cover</li>
+      <li>Crop monitoring and insurance</li>
+      <li>Ground deformation and structural risk</li>
       <li>Post-event damage assessment</li>
-      <li>Regulatory compliance reporting</li>
-      <li>Parametric insurance triggers</li>
+      <li>Oil spill and environmental monitoring</li>
+      <li>Vessel detection and maritime surveillance</li>
     </ul>
   </div>
 </section>
@@ -246,14 +227,14 @@
 
     <div class="faq__list">
       <details class="faq__item">
-        <summary>Why OpenEarthStack over an existing SAR operator?</summary>
+        <summary>How is OpenEarthStack different from an existing SAR operator or EO platform?</summary>
         <div class="faq__answer">
           <p>
-            OpenEarthStack is the data layer for satellite-based
-            infrastructure monitoring. We turn raw radar into analysis-ready
-            ground-movement and damage data for pipelines, transmission
-            corridors, bridges, highways, and urban infrastructure
-            portfolios.
+            No one else is building both the data infrastructure and the
+            intelligence tools together, starting from the contexts where
+            the need is greatest. Most SAR tooling assumes Western
+            infrastructure, Western datasets, and Western expertise. We
+            start from the other end.
           </p>
         </div>
       </details>
@@ -264,20 +245,23 @@
           <p>
             Yes. Our processing pipeline runs on 8 GB of RAM, producing
             analysis-ready output in under 20 seconds per scene. The same
-            workflow deploys to cloud, on-prem, or on-site hardware.
+            workflow deploys to cloud, on-prem, or on-site hardware. That
+            is a real differentiator in contexts where bandwidth, power,
+            and compute cannot be assumed.
           </p>
         </div>
       </details>
 
       <details class="faq__item">
-        <summary>Which sensors do you use, and what can you monitor?</summary>
+        <summary>What sensors and asset classes do you support?</summary>
         <div class="faq__answer">
           <p>
-            Our data products are derived from open C-band SAR by default;
-            commercial SAR integrations are available on request. Coverage
-            spans pipelines, power grid corridors, bridges, highways, and
-            urban infrastructure portfolios across 18 countries and three
-            continents.
+            We work with freely available global SAR data that already
+            covers the entire planet every few days, and extend to
+            commercial sources when a specific target demands it. Coverage
+            spans disaster response, agriculture, infrastructure,
+            environmental monitoring, and maritime. Sensor-agnostic by
+            design: we match the right source to the task.
           </p>
         </div>
       </details>
@@ -295,13 +279,15 @@
       </details>
 
       <details class="faq__item">
-        <summary>How do I know it works for my specific assets?</summary>
+        <summary>How do you make sure the models work for my region?</summary>
         <div class="faq__answer">
           <p>
-            Data quality is characterised per delivery: coherence, geometry,
-            temporal baseline, and scene-level QA, decomposed by asset class
-            and region. For a specific portfolio we scope expected SAR
-            sensitivity against your asset inventory before commitment.
+            Most off-the-shelf SAR models were trained almost entirely on
+            Western geographies, so they fail quietly when moved elsewhere.
+            We train and evaluate on the geographies where the models will
+            actually be used, and characterise quality per delivery:
+            coherence, geometry, temporal baseline, and scene-level QA,
+            decomposed by region and target type.
           </p>
         </div>
       </details>
@@ -390,7 +376,7 @@
       var body = [
         'Name: ' + name,
         'Email: ' + email,
-        'Company: ' + (company || '—'),
+        'Company: ' + (company || '-'),
         '',
         'Message:',
         message

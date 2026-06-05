@@ -327,10 +327,11 @@
     line-height: 1.5;
   }
 
+  /* SUCCESS */
   .success {
     display: none;
     text-align: center;
-    padding: 48px 0;
+    padding: 40px 0;
   }
 
   .success-icon {
@@ -348,17 +349,73 @@
     margin-bottom: 10px;
   }
 
-  .success p {
+  .success > p {
     font-size: 14px;
     color: var(--text-soft);
     line-height: 1.65;
     max-width: 300px;
-    margin: 0 auto 20px;
+    margin: 0 auto 24px;
+  }
+
+  .followup-box {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .followup-box p {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+
+  .followup-box input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--cream);
+    outline: none;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+
+  .followup-box input:focus { border-color: var(--green); }
+
+  .followup-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--green);
+    color: var(--cream);
+    border: none;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .followup-btn:hover { background: var(--green-light); }
+
+  .followup-msg {
+    display: none;
+    font-size: 12px;
+    color: var(--green);
+    margin-top: 8px;
+    text-align: center;
   }
 
   .again {
     font-size: 13px;
-    color: var(--green);
+    color: var(--text-soft);
     background: none;
     border: none;
     cursor: pointer;
@@ -388,7 +445,7 @@
   <div class="left">
     <div class="left-content">
       <p class="eyebrow">Ground truth collection</p>
-      <h1>Every location <em>tells us something</em>.</h1>
+      <h1>Every location <em>tells us something</em> satellites cannot.</h1>
       <p class="left-body">We are starting with a simple idea — that data collection does not need to be expensive or slow. Most people across Africa already visit the places that need to be on the map every day. We want to understand what it looks like when they contribute what they see.</p>
 
       <div class="experiment-box">
@@ -410,12 +467,14 @@
   </div>
 
   <div class="right">
+
+    <!-- FORM -->
     <div id="fv">
       <h2 class="form-title">Submit a location</h2>
       <p class="form-sub">A business, market, landmark, or any place that should be on the map. A few things is all we need.</p>
 
       <form id="sf"
-            action="https://formspree.io/f/mgobookn"
+            action="https://formspree.io/f/fgwjx"
             method="POST"
             enctype="multipart/form-data">
 
@@ -503,6 +562,7 @@
       </form>
     </div>
 
+    <!-- SUCCESS -->
     <div class="success" id="fs">
       <div class="success-icon">
         <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
@@ -511,10 +571,18 @@
       </div>
       <h2>Thank you.</h2>
       <p>Your submission helps us understand what a ground truth network for African markets could look like. We appreciate it.</p>
+
+      <div class="followup-box">
+        <p>Want us to follow up with you? Leave your email — no spam, just updates on what we are building.</p>
+        <input type="email" id="followup-email" placeholder="your@email.com" />
+        <button class="followup-btn" onclick="sendFollowup()">Stay in touch</button>
+        <p class="followup-msg" id="followup-msg">Thanks — we will be in touch. 😊</p>
+      </div>
+
       <button class="again" onclick="rf()">Submit another location</button>
     </div>
-  </div>
 
+  </div>
 </div>
 
 <script>
@@ -555,6 +623,20 @@ document.getElementById('sf').addEventListener('submit', function() {
   }, 1000);
 });
 
+function sendFollowup() {
+  const email = document.getElementById('followup-email').value;
+  if (!email) return;
+  fetch('https://formspree.io/f/fgwjx', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ followup_email: email })
+  });
+  document.getElementById('followup-msg').style.display = 'block';
+  document.getElementById('followup-email').disabled = true;
+  document.querySelector('.followup-btn').disabled = true;
+  document.querySelector('.followup-btn').style.opacity = '0.5';
+}
+
 function rf() {
   document.getElementById('sf').reset();
   document.getElementById('pp').style.display = 'none';
@@ -564,6 +646,9 @@ function rf() {
   document.getElementById('fc').value = '';
   document.getElementById('fv').style.display = 'block';
   document.getElementById('fs').style.display = 'none';
+  document.getElementById('followup-email').value = '';
+  document.getElementById('followup-email').disabled = false;
+  document.getElementById('followup-msg').style.display = 'none';
 }
 </script>
 </body>

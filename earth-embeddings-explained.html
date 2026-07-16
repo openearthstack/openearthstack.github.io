@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earth embeddings, and why they matter for local context — OpenEarthStack</title>
+<link rel="stylesheet" href="../style.css">
+<script>
+  MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <a class="brand" href="../index.html">OpenEarthStack</a>
+  <div class="links">
+    <a href="../index.html">About</a>
+    <a href="../products.html">Products</a>
+    <a href="../research.html" class="active">Research</a>
+    <a href="../index.html#join">Join us</a>
+  </div>
+</nav>
+
+<article>
+<h1>Earth embeddings, and why they matter for local context</h1>
+<p class="article-meta">OpenEarthStack &mdash; Research &middot; July 2026</p>
+
+<ul class="toc">
+  <li><a href="#scaling">The scaling problem in Earth observation</a></li>
+  <li><a href="#what-is">What an embedding actually is</a></li>
+  <li><a href="#dimensions">Dimensions: how big is a vector like this</a></li>
+  <li><a href="#patch">Patch-level versus tile-level embeddings</a></li>
+  <li><a href="#training">How Earth embedding models are trained</a></li>
+  <li><a href="#low-resource">Why this matters more in low-resource settings</a></li>
+  <li><a href="#open-question">The open question: does it hold up everywhere</a></li>
+  <li><a href="#further-reading">Further reading</a></li>
+  <li><a href="#citation">Citation</a></li>
+</ul>
+
+<h2 id="scaling">The scaling problem in Earth observation</h2>
+<p>Satellites capture roughly 100 terabytes of new imagery of the planet every day. Historically, turning that imagery into an answer to a specific question, such as "how many wildfire breaks does this region have" or "has this cropland degraded since last season", has meant building a dedicated machine learning model for that one question. Each model needs its own labeled training data, its own tuning, and its own maintenance. A model built to detect fire breaks tells you nothing about crop health. This does not scale to the number of questions people actually want to ask about the Earth.</p>
+<p>Foundation models trained on Earth observation (EO) data are a response to that problem: one model, trained once on a large amount of imagery, reused across many downstream tasks instead of retrained from nothing each time.</p>
+
+<h2 id="what-is">What an embedding actually is</h2>
+<p>An embedding is a fixed-length vector, a list of numbers, that represents a piece of data in a way that preserves its meaningful structure. Instead of representing a location as millions of raw pixel values, a model can represent it as a single vector of a few hundred or thousand numbers.</p>
+<p>The property that makes this useful is that distance in this vector space corresponds to similarity in the real world. Two locations that look and behave alike end up with vectors that are close together; two that are very different end up far apart. This is usually measured with cosine similarity, which compares the angle between two vectors rather than their raw magnitude:</p>
+<p>$$\text{sim}(a, b) = \frac{a \cdot b}{\|a\| \, \|b\|}$$</p>
+<p>where $a$ and $b$ are the embedding vectors for two locations. A value close to 1 means the two locations are represented as highly similar; a value close to 0 means they are not. This is what makes search and comparison over Earth data possible without a task-specific model for every question: you can ask "find me places similar to this one" as a nearest-neighbor lookup in vector space, rather than as a new modeling problem.</p>
+
+<h2 id="dimensions">Dimensions: how big is a vector like this</h2>
+<p>"A few hundred numbers" is not a fixed constant, it is a design choice, and it comes with a real trade-off. A Vision Transformer encoder outputs a vector with a fixed dimension, typically somewhere in the hundreds to low thousands, depending on the model's size. A larger dimension can encode more nuance, finer distinctions between two visually similar but functionally different places, at the cost of more storage, slower similarity search, and a higher risk of overfitting when there is little labeled data to fine-tune on. A smaller dimension is cheaper to store and query, but risks collapsing genuinely different places into similar vectors.</p>
+<p>This matters directly for local context. A model tuned and validated primarily on well-represented regions may have learned a dimensionality and internal structure that captures the visual variation found there efficiently, without necessarily reserving useful capacity for the kinds of variation, informal settlement patterns, smallholder field boundaries, unpaved road networks, that are common elsewhere but underrepresented in training.</p>
+
+<h2 id="patch">Patch-level versus tile-level embeddings</h2>
+<p>A Vision Transformer does not look at an image as one block. It first splits the input tile into a grid of smaller patches, for example 16 by 16 pixels each, and treats each patch as a token, the same way a language model treats a word. The encoder produces an embedding for every individual patch.</p>
+<p>From there, a model can be used in two different ways:</p>
+<p><strong>Patch-level embeddings</strong> keep one vector per patch. This preserves spatial detail: you can tell that the northern half of a tile is water and the southern half is cropland, because each has its own embedding. This is what tasks like segmentation or fine-grained land cover mapping need.</p>
+<p><strong>Tile-level embeddings</strong> pool all the patch embeddings, typically by averaging or through a learned aggregation token, into a single vector representing the whole tile. This is cheaper to store and search, and is enough for coarser tasks, such as tagging a tile as "urban" or "forest," but it throws away exactly the kind of fine spatial structure that patch-level embeddings preserve.</p>
+<p>Which one is appropriate depends entirely on the question being asked. A search over "which regions look similar to this one" can work reasonably well with tile-level embeddings. A question like "where exactly, within this region, has land use changed" generally cannot, and needs patch-level detail.</p>
+
+<h2 id="training">How Earth embedding models are trained</h2>
+<p>Most current Earth embedding models, including the open source Clay Foundation Model and NASA and IBM's Prithvi models, are built on a Vision Transformer architecture and trained with self-supervised learning, typically a masked autoencoder (MAE) objective. In practice, this means the model is shown satellite imagery with parts of it hidden, and learns to reconstruct the missing parts. It never needs human-provided labels to learn useful structure. Clay's public v1.5 release, for example, was trained on tens of millions of image chips sampled from sources including Sentinel-2, Landsat, Sentinel-1 SAR, and NAIP.</p>
+<p>Because training is self-supervised, the resulting embeddings are general-purpose. The same embedding can be fine-tuned or queried for very different downstream tasks: land cover classification, flood detection, burn scar mapping, crop type identification, without retraining the base model each time.</p>
+
+<h2 id="low-resource">Why this matters more in low-resource settings</h2>
+<p>Building a machine learning model from nothing requires a large amount of labeled, local data. That is expensive to collect, and it is exactly what is missing in many parts of the world.</p>
+<p>A pretrained Earth embedding changes the starting point. Rather than needing enough local labeled data to teach a model basic visual structure from scratch, you start from a representation that already encodes general structure learned globally, and adapt or fine-tune it with comparatively little local data to do a specific task. This is the standard logic of transfer learning, and it is a large part of why foundation models have become the default architecture in this space rather than task-specific models trained per region.</p>
+
+<h2 id="open-question">The open question: does it hold up everywhere</h2>
+<p>This is where the claim needs to be handled carefully, rather than assumed. Global training does not guarantee even performance. Publicly available satellite imagery, and even more so labeled ground-truth data used to validate models, is not evenly distributed across the planet. Some regions are represented in the training data in dense, high-resolution detail. Others are represented sparsely, inconsistently, or not at all.</p>
+<p>That gap between "trained on global data" and "performs well everywhere" is not automatically closed just because a model is described as global. It is an empirical question that has to be tested region by region, task by task, rather than assumed from the architecture alone.</p>
+<p>That is the specific problem we are working on: evaluating where today's open Earth embedding models hold up in local context, where they degrade, and what it takes to close that gap.</p>
+
+<h2 id="further-reading">Further reading</h2>
+<ul class="refs">
+  <li>Clay Foundation Model, open source AI model for Earth, Apache-2.0 licensed. See github.com/Clay-foundation/model</li>
+  <li>NASA and IBM's Prithvi geospatial foundation models, built on Harmonized Landsat Sentinel-2 (HLS) data.</li>
+  <li>Manning, N. "Introducing LGND." Medium, 2025. On building applied infrastructure on top of open Earth observation models.</li>
+  <li>Development Seed, "AI for Earth." On embedding-driven search and foundation model fine-tuning for climate and biodiversity applications.</li>
+  <li>Radiant Earth Foundation and Radiant MLHub. Early work on machine learning and training data for agriculture and land use in the Global South.</li>
+</ul>
+
+<h2 id="citation">Citation</h2>
+<p>If you want to reference this piece:</p>
+<pre>OpenEarthStack, "Earth embeddings, and why they matter for local context",
+OpenEarthStack: Research, July 2026.</pre>
+</article>
+
+<footer>&copy; 2026 OpenEarthStack</footer>
+
+</div>
+</body>
+</html>

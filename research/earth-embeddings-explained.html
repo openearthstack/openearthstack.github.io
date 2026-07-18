@@ -38,56 +38,56 @@
 </ul>
 
 <h2 id="scaling">The scaling problem in Earth observation</h2>
-<p>Satellites capture roughly 100 terabytes of new imagery of the planet every day. Historically, turning that imagery into an answer to a specific question, such as "how many buildings got damaged during this disaster" or "has this cropland degraded since last season", has meant building a dedicated machine learning model for that one question. Each model needs its own labeled training data, its own tuning, and its own maintenance. A model built to detect damage during disaster tells you nothing about crop health. This does not scale to the number of questions people actually want to ask about the Earth.</p>
-<p>Foundation models trained on Earth observation (EO) data are a response to that problem: one model, trained once on a large amount of imagery, reused across many downstream tasks.</p>
+<p>Satellites capture roughly 100 terabytes of new imagery of the planet every day. Historically, turning that imagery into an answer to a specific question, such as "how many buildings got damaged during this disaster" or "has this cropland degraded since last season," has meant building a dedicated machine learning model for that one question. Each model needs its own labeled training data, its own tuning, and its own maintenance. A model built to detect disaster damage tells you nothing about crop health. This does not scale to the number of questions people actually want to ask about the Earth.</p>
+<p>Foundation models trained on Earth observation (EO) data are a response to that problem. One model is trained once on a large amount of imagery, then reused across many downstream tasks instead of being retrained from nothing each time.</p>
 
 <h2 id="what-is">What an embedding actually is</h2>
-<p>An embedding is a fixed-length vector, a list of numbers, that represents a piece of data in a way that preserves its meaningful structure. Instead of representing a location as millions of raw pixel values, a model can represent it as a single vector of a few hundred or thousand numbers.</p>
+<p>An embedding is a fixed-length vector, a list of numbers, that represents a piece of data in a way that preserves its meaningful structure. Instead of representing a location as millions of raw pixel values, a model can represent it as a single vector of a few hundred or a few thousand numbers.</p>
+<p>Once you have this vector, there are two different things you can do with it. You can compare it directly against other vectors, treating it as a finished representation and searching for similar ones. Or you can use it as a starting point, adapting or fine-tuning the model that produced it with a small amount of local data to solve a specific task. Which of these applies depends on the model, and it is worth keeping the two apart, since the rest of this piece returns to that distinction.</p>
+<p>The first use, comparison, depends on a specific property. Distance in this vector space often corresponds to semantic similarity in the original data. Two locations with similar physical characteristics tend to end up with vectors that are close together; two that are very different tend to lie farther apart. Similarity between embeddings is commonly measured using cosine similarity, which compares the angle between two vectors rather than their magnitude.</p>
 
-<pre><code>{
-  "lat": 6.5,
-  "lon": 3.4,
-  "year": 2024,
-  "place_name": "Third Mainland Bridge, Makoko, Lagos Mainland, Lagos, Nigeria",
-  "embedding": [0.0246, -0.1359, -0.0354, 0.0591, -0.1191, 0.1085, -0.0121, -0.0271, ... ]  // 64 values total
-}</code></pre>
-<figcaption>Sample output from AlphaEarth Embedding. A single location (Third Mainland Bridge, Lagos, 2024) compressed to 64 numbers. The full array is truncated for readability.</figcaption>
-</figure>
-
-<p>The property that makes this useful is that distance in this vector space often corresponds to semantic similarity in the original data, capturing meaningful relationship in the real world. Two locations with similar physical characteristics end up with vectors that are close together; two that are very different tend to lie farther apart. Similarity between embeddings is commonly measured using cosine similarity, which compares the angle between two vectors rather than their magnitude.</p>
 <p>$$\text{sim}(a, b) = \frac{a \cdot b}{\|a\| \, \|b\|}$$</p>
-<p>where $a$ and $b$ are the embedding vectors for two locations. A value close to 1 means the two locations are represented as highly similar; a value close to 0 means they are not. This is what makes search and comparison over Earth data possible without a task-specific model for every question: you can ask "find me places similar to this one" as a nearest-neighbor lookup in vector space, rather than as a new modeling problem.</p>
+
+<p>where $a$ and $b$ are the embedding vectors for two locations. A value close to 1 means the two locations are represented as highly similar; a value close to 0 means they are not. This is what makes search and comparison over Earth data possible without a task-specific model for every question. "Find me places similar to this one" becomes a nearest-neighbor lookup in vector space, rather than a new modeling problem.</p>
+<p>How well this works depends on the question being asked. A search over "which regions look similar to this one" can work reasonably well with tile-level, coarser embeddings. A question like "where exactly, within this region, has land use changed" generally needs finer, patch-level detail instead.</p>
 
 <h2 id="training">How Earth embedding models are trained</h2>
-<p>Most current Earth embedding are a by product of geospatial foundation models, including the open source Clay Foundation Model and NASA and IBM's Prithvi models, are built on a Vision Transformer architecture and trained with self-supervised learning, typically a masked autoencoder (MAE) objective. In practice, this means the model is shown satellite imagery with parts of it hidden, and learns to reconstruct the missing parts. It never needs human-provided labels to learn useful structure. Clay's public v1.5 release, for example, was trained on tens of millions of image chips sampled from sources including Sentinel-2, Landsat, Sentinel-1 SAR, and NAIP.</p>
-<p>Because training is self-supervised, the resulting embeddings are general-purpose. The same embedding can be fine-tuned or queried for very different downstream tasks: land cover classification, flood detection, burn scar mapping, crop type identification, without retraining the base model each time.</p>
+<p>Earth embedding models fall into two broad categories, depending on what the embedding is for.</p>
+<p>The first category treats the embedding as an intermediate step. Models like the open source Clay Foundation Model and NASA and IBM's Prithvi models are built on a Vision Transformer architecture and trained with self-supervised learning, without needing human-provided labels to learn useful structure. Clay's public v1.5 release, for example, was trained on tens of millions of image chips sampled from sources including Sentinel-2, Landsat, Sentinel-1 SAR, and NAIP. Because this training is self-supervised, the resulting embeddings are general-purpose. The same embedding can be fine-tuned or queried for very different downstream tasks, land cover classification, flood detection, burn scar mapping, crop type identification, without retraining the base model each time. The embedding itself, extracted from an intermediate layer, is useful, but it is a byproduct of a model built for something else. The pretrained weights are a starting point, and a small amount of local labeled data adapts the model to a specific task.</p>
+<p>The second category treats the embedding as the finished product. AlphaEarth Foundations, released by Google DeepMind in 2025, is trained to compress multiple data sources, optical and radar imagery, elevation, climate variables, and text, into a single 64-dimensional vector per 10-meter pixel, constrained to unit length. The published dataset covers the global land surface annually from 2017 to 2024, and Google has stated that no further fine-tuning of the underlying model is expected. Downstream users train small classifiers directly on the frozen embeddings instead. Google has released the embeddings themselves but not the model weights that produced them.</p>
+<p>TESSERA, developed at the University of Cambridge with Aalto University and other partners and presented at CVPR 2026, takes a related but more open approach. It produces 128-dimensional per-pixel embeddings at 10-meter resolution from a full year of combined Sentinel-1 and Sentinel-2 observations, also trained self-supervised, across two encoders combining optical and radar data. The project describes its release as an "embeddings-as-data" paradigm, where precomputed global embeddings are published directly, under a CC0 license, alongside the model weights themselves, which are also open. Unlike AlphaEarth, TESSERA embeddings can also be used as a starting point for further fine-tuning, so it sits closer to a hybrid of the two categories described above.</p>
+<p>This distinction, between an embedding as a byproduct of a model built for fine-tuning, and an embedding as a deliverable in its own right, is not always made explicit in how these models are discussed, but it changes what a given release is actually useful for.</p>
 
 <h2 id="low-resource">Why this matters more in low-resource settings</h2>
 <p>Building a machine learning model from nothing requires a large amount of labeled, local data. That is expensive to collect, and it is exactly what is missing in many parts of the world.</p>
-<p>A pretrained Earth embedding changes the starting point. Rather than needing enough local labeled data to teach a model basic visual structure from scratch, you start from a representation that already encodes general structure learned globally, and adapt or fine-tune it with comparatively little local data to do a specific task. This is the standard logic of transfer learning, and it is a large part of why foundation models have become the default architecture in this space.</p>
+<p>A pretrained Earth embedding changes the starting point, and it does so in two different ways depending on which category it falls into. For a model meant to be fine-tuned, you start from a representation that already encodes general structure learned globally, and adapt it with comparatively little local data, rather than teaching a model basic visual structure from scratch. This is the standard logic of transfer learning. For a model whose embeddings are the finished product, the local data requirement is smaller still. No fine-tuning of the underlying model happens at all, and a small classifier is trained directly on the frozen vectors, which needs far less compute and far less labeled data than adapting a foundation model itself. Both routes lower the barrier from where it stood before foundation models existed, but the second is the lighter-weight option, and it is a large part of why frozen, precomputed embeddings in particular have become attractive for exactly the settings this piece is concerned with.</p>
 
-<h2 id="open-question">The open question: does it hold up everywhere</h2>
+<h2 id="open-question">Does it hold up everywhere</h2>
 <p>This is where the claim needs to be handled carefully. Global training does not guarantee even performance. Publicly available satellite imagery, and even more so labeled ground-truth data used to validate models, is not evenly distributed across the planet. Some regions are represented in the training data in dense, high-resolution detail. Others are represented sparsely, inconsistently, or not at all.</p>
-<p>That gap between "trained on global data" and "performs well everywhere" is not automatically closed just because a model is described as global. It is an empirical question that has to be tested region by region, task by task, and not assumed from the architecture alone.</p>
-<p>That is the specific problem we are working on: evaluating where today's open Earth embedding models hold up in local context, where they degrade, and what it takes to close that gap.</p>
+<p>That gap between "trained on global data" and "performs well everywhere" is not automatically closed just because a model is described as global. It is an empirical question that has to be tested region by region, task by task, not assumed from the architecture alone.</p>
+<p>That is the specific problem we are working on, evaluating where today's open Earth embedding models hold up in local context, where they degrade, and what it takes to close that gap.</p>
 
 <h2 id="further-reading">Further reading</h2>
-<ul class="refs">
-  <li>Clay Foundation Model, open source AI model for Earth, Apache-2.0 licensed. See github.com/Clay-foundation/model</li>
-  <li>NASA and IBM's Prithvi geospatial foundation models, built on Harmonized Landsat Sentinel-2 (HLS) data.</li>
-  <li>Manning, N. "Introducing LGND." Medium, 2025. On building applied infrastructure on top of open Earth observation models.</li>
-  <li>Development Seed, "AI for Earth." On embedding-driven search and foundation model fine-tuning for climate and biodiversity applications.</li>
-  <li>Radiant Earth Foundation and Radiant MLHub. Early work on machine learning and training data for agriculture and land use in the Global South.</li>
+<ul>
+<li>Klemmer, K., Rolf, E., Russwurm, M., et al. "Earth Embeddings: Towards AI-centric Representations of our Planet." EarthArXiv, 2025. doi.org/10.31223/X5HX9S.</li>
+<li>Clay Foundation Model, open source AI model for Earth, Apache-2.0 licensed. See github.com/Clay-foundation/model</li>
+<li>NASA and IBM's Prithvi geospatial foundation models, built on Harmonized Landsat Sentinel-2 (HLS) data.</li>
+<li>Brown, C. et al. "AlphaEarth Foundations: An embedding field model for accurate and efficient global mapping from sparse label data." Google DeepMind, 2025. arXiv:2507.22291.</li>
+<li>Feng, Z. et al. "TESSERA: Temporal Embeddings of Surface Spectra for Earth Representation and Analysis." University of Cambridge, CVPR 2026. arXiv:2506.20380.</li>
+<li>Manning, N. "Introducing LGND." Medium, 2025. On building applied infrastructure on top of open Earth observation models.</li>
+<li>Development Seed, "AI for Earth." On embedding-driven search and foundation model fine-tuning for climate and biodiversity applications.</li>
+<li>Radiant Earth Foundation and Radiant MLHub. Early work on machine learning and training data for agriculture and land use in the Global South.</li>
 </ul>
 
 <h2 id="citation">Citation</h2>
-<p>If you want to reference this piece:</p>
-<pre>OpenEarthStack, "Earth embeddings, and why they matter for local context",
-OpenEarthStack: Research, July 2026.</pre>
-</article>
+<p>If you want to reference this piece, use the following.</p>
+<pre><code>OpenEarthStack, "Earth embeddings, and why they matter for local context",
+OpenEarthStack, Research, July 2026.</code></pre>
 
 <footer>&copy; 2026 OpenEarthStack</footer>
 
-</div>
+</article>
+</main>
+
 </body>
 </html>

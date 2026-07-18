@@ -39,17 +39,27 @@
 
 <h2 id="scaling">The scaling problem in Earth observation</h2>
 <p>Satellites capture roughly 100 terabytes of new imagery of the planet every day. Historically, turning that imagery into an answer to a specific question, such as "how many buildings got damaged during this disaster" or "has this cropland degraded since last season", has meant building a dedicated machine learning model for that one question. Each model needs its own labeled training data, its own tuning, and its own maintenance. A model built to detect damage during disaster tells you nothing about crop health. This does not scale to the number of questions people actually want to ask about the Earth.</p>
-<p>Foundation models trained on Earth observation (EO) data are a response to that problem: one model, trained once on a large amount of imagery, reused across many downstream tasks instead of retrained from nothing each time.</p>
+<p>Foundation models trained on Earth observation (EO) data are a response to that problem: one model, trained once on a large amount of imagery, reused across many downstream tasks.</p>
 
 <h2 id="what-is">What an embedding actually is</h2>
 <p>An embedding is a fixed-length vector, a list of numbers, that represents a piece of data in a way that preserves its meaningful structure. Instead of representing a location as millions of raw pixel values, a model can represent it as a single vector of a few hundred or thousand numbers.</p>
-<p>The property that makes this useful is that distance in this vector space often corresponds to semantic similarity in the original data, capturing meaningful relationship in the real world. Two locations with similar physical characteristics end up with vectors that are close together; two that are very different tend to lie farther apart. Similarity between embeddings is commonly measured using cosine similarity, which compares the angle between two vectors rather than their magnitude:</p>
+
+<pre><code>{
+  "lat": 6.5,
+  "lon": 3.4,
+  "year": 2024,
+  "place_name": "Third Mainland Bridge, Makoko, Lagos Mainland, Lagos, Nigeria",
+  "embedding": [0.0246, -0.1359, -0.0354, 0.0591, -0.1191, 0.1085, -0.0121, -0.0271, ... ]  // 64 values total
+}</code></pre>
+<figcaption>Sample output from AlphaEarth Embedding. A single location (Third Mainland Bridge, Lagos, 2024) compressed to 64 numbers. The full array is truncated for readability.</figcaption>
+</figure>
+
+<p>The property that makes this useful is that distance in this vector space often corresponds to semantic similarity in the original data, capturing meaningful relationship in the real world. Two locations with similar physical characteristics end up with vectors that are close together; two that are very different tend to lie farther apart. Similarity between embeddings is commonly measured using cosine similarity, which compares the angle between two vectors rather than their magnitude.</p>
 <p>$$\text{sim}(a, b) = \frac{a \cdot b}{\|a\| \, \|b\|}$$</p>
 <p>where $a$ and $b$ are the embedding vectors for two locations. A value close to 1 means the two locations are represented as highly similar; a value close to 0 means they are not. This is what makes search and comparison over Earth data possible without a task-specific model for every question: you can ask "find me places similar to this one" as a nearest-neighbor lookup in vector space, rather than as a new modeling problem.</p>
- appropriate depends entirely on the question being asked. A search over "which regions look similar to this one" can work reasonably well with tile-level embeddings. A question like "where exactly, within this region, has land use changed" generally cannot, and needs patch-level detail.</p>
 
 <h2 id="training">How Earth embedding models are trained</h2>
-<p>Most current Earth embedding models, including the open source Clay Foundation Model and NASA and IBM's Prithvi models, are built on a Vision Transformer architecture and trained with self-supervised learning, typically a masked autoencoder (MAE) objective. In practice, this means the model is shown satellite imagery with parts of it hidden, and learns to reconstruct the missing parts. It never needs human-provided labels to learn useful structure. Clay's public v1.5 release, for example, was trained on tens of millions of image chips sampled from sources including Sentinel-2, Landsat, Sentinel-1 SAR, and NAIP.</p>
+<p>Most current Earth embedding are a by product of geospatial foundation models, including the open source Clay Foundation Model and NASA and IBM's Prithvi models, are built on a Vision Transformer architecture and trained with self-supervised learning, typically a masked autoencoder (MAE) objective. In practice, this means the model is shown satellite imagery with parts of it hidden, and learns to reconstruct the missing parts. It never needs human-provided labels to learn useful structure. Clay's public v1.5 release, for example, was trained on tens of millions of image chips sampled from sources including Sentinel-2, Landsat, Sentinel-1 SAR, and NAIP.</p>
 <p>Because training is self-supervised, the resulting embeddings are general-purpose. The same embedding can be fine-tuned or queried for very different downstream tasks: land cover classification, flood detection, burn scar mapping, crop type identification, without retraining the base model each time.</p>
 
 <h2 id="low-resource">Why this matters more in low-resource settings</h2>
